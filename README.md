@@ -1,5 +1,5 @@
 
-#Register
+# Register
 with email and password to have access to the api.
 
 #Login 
