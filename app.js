@@ -8,13 +8,15 @@ const database = require('./api/database/database');
 
 const app = express();
 
-database.connect();
+// database.connect();
 
 // Routes
 const userRoute = require('./api/routes/user');
+const crimeRoute = require('./api/routes/crime');
 
 // Middlewares
 app.use(express.static('public'));
+app.use(express.json())
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(cors({
@@ -22,7 +24,8 @@ app.use(cors({
 }));
 
 // Use Routes
-app.use('/user', userRoute);
+// app.use('/user', userRoute);
+app.use('/crime', crimeRoute);
 
 /** Creates and passes a 404 error if the route is not a register route*/ 
 app.use((req, res, next) => {
@@ -43,5 +46,7 @@ app.use((error, req, res, next) => {
 
 /** Starts the server */
 app.listen(process.env.PORT, () => {
-    console.log("Server started");
+    console.log("Server started on port");
+
+    console.log(process.env.PORT)
 });
